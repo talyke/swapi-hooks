@@ -16,7 +16,7 @@ function App() {
             }, "params": {
                 "language_code": "en",
                 "results": "[{name}]",
-            }
+            }// FIXME https://swapi.dev/api/people/?language_code=en&results=[%7Bname%7D]
         })
             .then((response) => {
                 setResponseData(response.data)
