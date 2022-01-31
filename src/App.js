@@ -6,6 +6,11 @@ function App() {
     let [responseData, setResponseData] = React.useState('');
     const myList = document.querySelector('ul');
     const myRequest = new Request('names.json');
+/*    const myReplacedCharactertId = fetchEvent.replacesCharacterId;
+
+    self.addEventListener('fetch', function (event) {
+        console.log(event.replacesCharacterId);
+    });*/
 
     const fetchData = React.useCallback(() => {
         axios({
@@ -15,7 +20,7 @@ function App() {
                 "content-type": "application/json",
             }, "params": {
                 "language_code": "en",
-                "results": "[{name}]",
+                "results": "[{}]",
             }// FIXME https://swapi.dev/api/people/?language_code=en&results=[%7Bname%7D]
         })
             .then((response) => {
@@ -25,6 +30,12 @@ function App() {
             .then(response => response.json())
             .then(data => {
                 for (const name of data.names) {
+                    let people = document.body.childNodes[0];
+                    let output = document.getElementById("name");
+                 /*   let span = document.getElementsByTagName("span")[0];
+                    let textnode = span.nextSibling;
+                    textnode.data = "This text has been set using textnode.data."*/
+                    output.value = people.data;
                     let listItem = document.createElement('li');
                     listItem.appendChild(
                         document.createElement('strong')
@@ -43,6 +54,7 @@ function App() {
     }, [])
 
     React.useEffect(() => {
+    
         fetchData()
     }, [fetchData])
 
@@ -58,7 +70,8 @@ function App() {
                 {responseData &&
                     <blockquote>
                         "{responseData && responseData.content}"
-                        <small>{responseData && responseData.originator && responseData.originator.name}</small>
+                    <small>{responseData && responseData.originator && responseData.originator.name}</small>
+                    <output id="name"></output>
                     </blockquote>
                 }
             </main>
