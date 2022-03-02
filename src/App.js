@@ -29,23 +29,24 @@ function App() {
         fetch(myRequest)
             .then(response => response.json())
             .then(data => {
-                for (const name of data.names) {
+                for (const [id] of data.people) {
                     let people = document.body.childNodes[0];
+                    let homeworld = document.body.childNodes[1];
                     let output = document.getElementById("name");
-                 /*   let span = document.getElementsByTagName("span")[0];
+                    let span = document.getElementsByTagName("span")[3];
                     let textnode = span.nextSibling;
-                    textnode.data = "This text has been set using textnode.data."*/
+                   // textnode.data = homeworld.data
                     output.value = people.data;
                     let listItem = document.createElement('li');
                     listItem.appendChild(
                         document.createElement('strong')
-                    ).textContent = name.Name;
+                    ).textContent = `${people.name}`;
                     listItem.append(
-                        ` born in homeworld planet ${name.Name}. Name: `
+                        ` born in homeworld ${people.name}. Name: `
                     );
                     listItem.appendChild(
                         document.createElement('strong')
-                    ).textContent = `${name.planet}`;
+                    ).textContent = `${homeworld.name}`;
                     myList.appendChild(listItem);
                 }
             })

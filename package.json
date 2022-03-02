@@ -35,5 +35,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "planets": {
+    "name": "Planet Instance",
+    "description": "",
+    "renders": [
+      "application/json",
+      "text/html",
+      "application/json"
+    ],
+    "parses": [
+      "application/json",
+      "application/x-www-form-urlencoded",
+      "multipart/form-data"
+    ]
   }
 }
